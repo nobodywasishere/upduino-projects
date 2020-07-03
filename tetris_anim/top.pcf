@@ -1,0 +1,16 @@
+set_io SIG[0] 2
+set_io SIG[1] 46
+set_io SIG[2] 47
+set_io SIG[3] 45
+set_io SIG[4] 48
+set_io SIG[5] 3
+set_io SIG[6] 4
+set_io SIG[7] 44
+set_io SIG[8] 28
+set_io SIG[9] 38
+set_io SIG[10] 42
+set_io SIG[11] 36
+set_io SIG[12] 43
+set_io SIG[13] 34
+set_io SIG[14] 37
+set_io SIG[15] 31

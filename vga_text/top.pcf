@@ -1,0 +1,5 @@
+set_io rout 48
+set_io gout 45
+set_io bout 47
+set_io vsync 46
+set_io hsync 2
