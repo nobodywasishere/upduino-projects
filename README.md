@@ -8,9 +8,9 @@ Requires a working Icestorm toolchain setup (http://www.clifford.at/icestorm/), 
 
 | Name               | Description                                                 |
 |--------------------|-------------------------------------------------------------|
-| blank              | A blank template for creating new projects                  |
 | Documentation      | Various documentation files about the FPGA and others       |
 | flashing_led       | Flashes the onboard LED with 8 colors                       |
+| template           | A blank template for creating new projects                  |
 | tetris_anim        | An animation of a game of Tetris                            |
 | vga_logic_analyzer | (Proof of concept) Logic analyzer output to VGA display     |
 | vga_text           | ASCII + text buffer output to VGA display                   |
