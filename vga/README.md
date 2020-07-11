@@ -2,6 +2,8 @@
 
 Currently has timings for 640x480 @ 60Hz and 1024x768 @ 60Hz. Outputs test screen with 7 colors. Tests were done to see if higher resolutions would work but these tests have failed, including 720p and 1080p.
 
+Switched to using external 36MHz clock instead of internal clock to reduced noise.
+
 ```
 Info: Device utilisation:
 Info: 	         ICESTORM_LC:   542/ 5280    10%

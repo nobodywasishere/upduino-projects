@@ -6,7 +6,8 @@ use IEEE.numeric_std.all;
 entity top is
 	port(
         rout, gout, bout : out std_logic;
-        hsync, vsync : out std_logic
+        hsync, vsync : out std_logic;
+        clk_ext : in std_logic
 	);
 end top;
 
@@ -50,7 +51,7 @@ begin
 
     dut1 : SB_HFOSC port map (CLKHF => clk_48);
     dut2 : vga port map (
-        clk_48 => clk_48,
+        clk_48 => clk_ext,
         clk_pxl => clk_pxl,
         rin => red, gin => gre, bin => blu,
         row => row, col => col,
