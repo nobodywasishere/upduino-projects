@@ -30,7 +30,7 @@ clean:
 	rm -rf *.bin *.asc *.json *.cf $(LOG_FILE) && touch $(LOG_FILE)
 
 simulate:
-	@echo -en "$(BLUEBOLD)==== Simulating...   ====$(NC)\n"
+	@echo -en "$(BLUEBOLD)==== Analyzing...   ====$(NC)\n"
 	$(GHDL) -a *.$(VHDL_EXT) $(ERR_STREAM)
 
 synth: # Synthesize the design
