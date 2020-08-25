@@ -1,5 +1,5 @@
-set_io SIG[0] 39    -- green
-set_io SIG[1] 40    -- blue
-set_io SIG[2] 41    -- red
+set_io SIG[0] 39    -- v2: green v3: red
+set_io SIG[1] 40    -- v2: blue  v3: green
+set_io SIG[2] 41    -- v2: red   v3: blue
 set_io BTN[0] 38
 set_io BTN[1] 28

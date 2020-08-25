@@ -65,17 +65,29 @@ begin
     -- V_B <= 33;
     -- V_T <= V_A + V_F + V_S + V_B;
 
-    -- -- 65 MHz / 1024x768
-    H_A <= 1024;
-    H_F <= 24;
-    H_S <= 136;
+    -- 49.5 MHz / 800x600
+    H_A <= 800;
+    H_F <= 16;
+    H_S <= 80;
     H_B <= 160;
     H_T <= H_A + H_F + H_S + H_B;
-    V_A <= 768;
-    V_F <= 3;
-    V_S <= 6;
-    V_B <= 29;
+    V_A <= 600;
+    V_F <= 1;
+    V_S <= 3;
+    V_B <= 21;
     V_T <= V_A + V_F + V_S + V_B;
+
+    -- -- 65 MHz / 1024x768
+    -- H_A <= 1024;
+    -- H_F <= 24;
+    -- H_S <= 136;
+    -- H_B <= 160;
+    -- H_T <= H_A + H_F + H_S + H_B;
+    -- V_A <= 768;
+    -- V_F <= 3;
+    -- V_S <= 6;
+    -- V_B <= 29;
+    -- V_T <= V_A + V_F + V_S + V_B;
 
     -- 74.25 MHz / 720p Doesn't work
     -- H_A <= 1280;
@@ -212,11 +224,11 @@ architecture synth of pll is
             -- FILTER_RANGE : unsigned(2 downto 0) := "001"
 
             -- 36 MHz > 65.25 MHz / 1024x768
-            FEEDBACK_PATH : String := "SIMPLE";
-            DIVR : unsigned(3 downto 0) := "0000";
-            DIVF : unsigned(6 downto 0) := "0011100";
-            DIVQ : unsigned(2 downto 0) := "100";
-            FILTER_RANGE : unsigned(2 downto 0) := "011"
+            -- FEEDBACK_PATH : String := "SIMPLE";
+            -- DIVR : unsigned(3 downto 0) := "0000";
+            -- DIVF : unsigned(6 downto 0) := "0011100";
+            -- DIVQ : unsigned(2 downto 0) := "100";
+            -- FILTER_RANGE : unsigned(2 downto 0) := "011"
 
             -- 36 MHz > 74.25 MHz / 720p
             -- FEEDBACK_PATH : String := "SIMPLE";
@@ -237,6 +249,27 @@ architecture synth of pll is
             -- DIVR : unsigned(3 downto 0) := "0010";
             -- DIVF : unsigned(6 downto 0) := "1001000";
             -- DIVQ : unsigned(2 downto 0) := "011";
+            -- FILTER_RANGE : unsigned(2 downto 0) := "001"
+
+            -- 12 MHz > 25.125 MHz / 640x480
+            -- FEEDBACK_PATH : String := "SIMPLE";
+            -- DIVR : unsigned(3 downto 0) := "0000";
+            -- DIVF : unsigned(6 downto 0) := "1000010";
+            -- DIVQ : unsigned(2 downto 0) := "101";
+            -- FILTER_RANGE : unsigned(2 downto 0) := "001"
+
+            -- 12 MHz > 49.5 MHz / 800x600
+            FEEDBACK_PATH : String := "SIMPLE";
+            DIVR : unsigned(3 downto 0) := "0000";
+            DIVF : unsigned(6 downto 0) := "1000001";
+            DIVQ : unsigned(2 downto 0) := "100";
+            FILTER_RANGE : unsigned(2 downto 0) := "001"
+
+            -- -- 12 MHz > 65 MHz / 1024x768
+            -- FEEDBACK_PATH : String := "SIMPLE";
+            -- DIVR : unsigned(3 downto 0) := "0000";
+            -- DIVF : unsigned(6 downto 0) := "1010110";
+            -- DIVQ : unsigned(2 downto 0) := "100";
             -- FILTER_RANGE : unsigned(2 downto 0) := "001"
 
         );

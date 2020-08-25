@@ -43,8 +43,8 @@ architecture synth of top is
     signal bound_red, bound_gre, bound_blu : boolean;
     signal w : std_logic;
 
-    constant screen_h : integer := 1024;
-    constant screen_v : integer := 768;
+    constant screen_h : integer := 800;
+    constant screen_v : integer := 600;
     constant border_size : integer := 10;
 
 begin
@@ -70,10 +70,8 @@ begin
                  (row >= 48 AND row <= 720 AND col >= 736 AND col <= 848);
     bound_blu <= (row >= 48 AND row <= 720 AND col >= 400 AND col <= 848);
 
-    w <= '1' WHEN (bound_border) ELSE '0';
-
-    red <= '1' WHEN (w = '1' OR bound_red) ELSE '0';
-    gre <= '1' WHEN (w = '1' OR bound_gre) ELSE '0';
-    blu <= '1' WHEN (w = '1' OR bound_blu) ELSE '0';
+    red <= '1' WHEN (bound_border or (bound_red and bound_screen)) ELSE '0';
+    gre <= '1' WHEN (bound_border or (bound_gre and bound_screen)) ELSE '0';
+    blu <= '1' WHEN (bound_border or (bound_blu and bound_screen)) ELSE '0';
 
 end;

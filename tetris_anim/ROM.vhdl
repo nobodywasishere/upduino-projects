@@ -5,10 +5,10 @@ use IEEE.numeric_std.all;
 entity ROM is
 	port(
 		clk : in std_logic;
-    addr : in unsigned(9 downto 0);
+        addr : in unsigned(9 downto 0);
 		mem : out unsigned(15 downto 0)
 	);
-end rom;
+end ROM;
 
 architecture synth of rom is
 begin
