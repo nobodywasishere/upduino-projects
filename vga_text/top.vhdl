@@ -132,14 +132,14 @@ begin
     --              (row >= 320 AND row <= 720 AND col >= 736 AND col <= 848);
     -- bound_blu <= (row >= 320 AND row <= 720 AND col >= 400 AND col <= 848);
 
-    w <= '1' WHEN (bound_border) ELSE
-         '1' WHEN (char_lum = '1') ELSE '0';
+    -- w <= '1' WHEN (bound_border) ELSE
+    --      '1' WHEN (char_lum = '1') ELSE '0';
 
     -- red <= '1' WHEN (w = '1' OR bound_red) ELSE '0';
     -- gre <= '1' WHEN (w = '1' OR bound_gre) ELSE '0';
     -- blu <= '1' WHEN (w = '1' OR bound_blu) ELSE '0';
-    red <= w;
-    gre <= w;
-    blu <= w;
+    red <= char_lum;
+    gre <= char_lum;
+    blu <= char_lum;
 
 end;
