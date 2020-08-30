@@ -8,6 +8,8 @@ Connect a wire between pins 28 and 37 to see the oscilloscope in action (it curr
 
 ![Logic Analyzer Display Output](./logic_analyzer.jpg)
 
+![](./top.svg)
+
 ```
 Info: Device utilisation:
 Info: 	         ICESTORM_LC:  1452/ 5280    27%

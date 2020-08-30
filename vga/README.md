@@ -4,8 +4,9 @@ Currently has timings for 640x480 @ 60Hz and 1024x768 @ 60Hz. Outputs test scree
 
 Switched to using external 36MHz clock instead of internal clock to reduced noise.
 
-Testing on Upduino v3.0. 1024x768 doesn't work, but 800x600 does. 
+Testing on Upduino v3.0. 1024x768 doesn't work, but 800x600 does.
 
+![](./top.svg)
 
 ```
 Info: Device utilisation:

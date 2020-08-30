@@ -4,6 +4,8 @@ An ASCII character set with C64 font and text buffer that outputs to a 768p VGA 
 
 ![Picture of test image produced](text.jpg)
 
+![](./top.svg)
+
 ```
 Info: Device utilisation:
 Info: 	         ICESTORM_LC:   936/ 5280    17%

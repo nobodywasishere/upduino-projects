@@ -15,6 +15,7 @@ Files:
  - Makefile: compile and flash your project, see `make help` for usage info
  - test.vhdl: your other VHDL code
 
+![](./top.svg)
 
 ```
 ///////////////// Statistics: /////////////////

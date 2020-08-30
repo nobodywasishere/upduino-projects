@@ -129,7 +129,7 @@ begin
     process (clk_48) begin
         if (rising_edge(clk_48)) then
             if (reset = '1') then
-                counter <= 32b"0";
+                counter <= "00000000000000000000000000000000";
             else
                 counter <= counter + 1;
             end if;
@@ -147,7 +147,7 @@ begin
                 byte_counter <= "0000";
             elsif (uart_txd_ready = '1'
                 and not (uart_txd_strobe = '1')
-                and counter(14 downto 0) = 15b"0") then
+                and counter(14 downto 0) = "0000000000000000") then
                 uart_txd_strobe <= '1';
 
                 if (byte_counter = "00") then

@@ -2,6 +2,8 @@
 
 This project flashes the built-in LED of the Upduino.
 
+![](./top.svg)
+
 TODO:
 - brightness control
 - push button on/off

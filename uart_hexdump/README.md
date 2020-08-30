@@ -14,3 +14,5 @@ Files:
  - top.vhdl
  - Makefile: compile and flash, see `make help` for usage info
  - uart.vhdl: UART tools and utilities.
+
+![](./top.svg)
