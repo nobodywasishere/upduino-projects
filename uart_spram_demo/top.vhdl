@@ -47,9 +47,7 @@ entity top is
         led_b : out std_logic;
         serial_txd : out std_logic;
         serial_rxd : in std_logic;
-        spi_cs : out std_logic;
-        gpio_2 : out std_logic;
-        gpio_28 : in std_logic
+        spi_cs : out std_logic
     );
 end top;
 
@@ -124,8 +122,6 @@ architecture synth of top is
         );
     end component;
 
-    signal debug0 : std_logic;
-
     signal clk_1, clk_4, clk_48 : std_logic;
     signal reset : std_logic;
 
@@ -144,6 +140,7 @@ architecture synth of top is
 
     signal fifo_read_strobe : std_logic;
     signal fifo_available : std_logic;
+    signal fifo_data : unsigned(7 downto 0);
 
 begin
 
@@ -169,7 +166,7 @@ begin
         baud_x1 => clk_1,
         serial => serial_txd_interm,
         ready => uart_txd_ready,
-        data => uart_txd,
+        data => fifo_data,
         data_strobe => uart_txd_strobe
     );
 
@@ -188,15 +185,13 @@ begin
         data_available => fifo_available,
         write_data => uart_rxd,
         write_strobe => uart_rxd_strobe,
-        read_data => uart_txd,
-        read_strobe => uart_txd_strobe
+        read_data => fifo_data,
+        read_strobe => fifo_read_strobe
     );
 
     spi_cs <= '1';
-    gpio_2 <= debug0;
-    led_b <= serial_rxd;
+    led_b <= serial_txd_interm;
     serial_txd <= serial_txd_interm;
-    debug0 <= serial_txd_interm;
 
     process (clk_48) begin
         if (rising_edge(clk_48)) then
@@ -216,9 +211,11 @@ begin
             fifo_read_strobe <= '0';
             led_r <= '1';
 
-            if (fifo_available = '1' and uart_txd_ready = '1' and
-                uart_rxd_strobe = '0' and uart_txd_strobe = '0'
-                and counter(18 downto 0) = "0000000000000000000") then
+            if (fifo_available = '1' and
+                uart_txd_ready = '1' and
+                NOT (uart_rxd_strobe = '1') and
+                NOT (uart_txd_strobe = '1') and
+                counter(18 downto 0) = "0000000000000000000") then
                 fifo_read_strobe <= '1';
                 uart_txd_strobe <= '1';
                 led_r <= '0';

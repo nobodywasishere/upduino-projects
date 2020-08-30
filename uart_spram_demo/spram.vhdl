@@ -94,14 +94,15 @@ begin
     write_data_double <= write_data & write_data;
     align_quad <= align & align & not align & not align;
     chip_select <= (cs and not reset);
+    read_data <= rdata_16(15 downto 8) WHEN (align = '1') ELSE rdata_16(7 downto 0);
 
-    process (clk) begin
-        if (align = '1') then
-            read_data <= rdata_16(15 downto 8);
-        else
-            read_data <= rdata_16(7 downto 0);
-        end if;
-    end process;
+    -- process (clk) begin
+    --     if (align = '1') then
+    --         read_data <= rdata_16(15 downto 8);
+    --     else
+    --         read_data <= rdata_16(7 downto 0);
+    --     end if;
+    -- end process;
 
 end;
 
@@ -160,21 +161,24 @@ begin
         read_data => read_data
     );
 
-    process (write_strobe) begin
-        if (write_strobe = '1') then
-            addr <= write_ptr;
-        else
-            addr <= read_ptr;
-        end if;
-    end process;
+    addr <= write_ptr WHEN (write_strobe = '1') ELSE read_ptr;
+    -- process (write_strobe) begin
+    --     if (write_strobe = '1') then
+    --         addr <= write_ptr;
+    --     else
+    --         addr <= read_ptr;
+    --     end if;
+    -- end process;
 
-    process (read_ptr, write_ptr) begin
-        if (read_ptr /= write_ptr) then
-            data_available <= '1';
-        else
-            data_available <= '0';
-        end if;
-    end process;
+    data_available <= '1' WHEN (read_ptr /= write_ptr) ELSE '0';
+
+    -- process (read_ptr, write_ptr) begin
+    --     if (read_ptr /= write_ptr) then
+    --         data_available <= '1';
+    --     else
+    --         data_available <= '0';
+    --     end if;
+    -- end process;
 
     process (clk) begin
         if (rising_edge(clk)) then
