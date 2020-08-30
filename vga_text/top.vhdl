@@ -112,9 +112,9 @@ begin
     char_col <= col(3 downto 1);
 
     bound_screen <= (row <= screen_v AND row >= 0 AND col <= screen_h AND col >= 0);
-    bound_border <= bound_screen AND
-        (row >= screen_v - border_size OR row <= border_size OR
-         col >= screen_h - border_size OR col <= border_size);
+    -- bound_border <= bound_screen AND
+    --     (row >= screen_v - border_size OR row <= border_size OR
+    --      col >= screen_h - border_size OR col <= border_size);
 
     -- bound_A <= bound_screen AND
     --     (row >= char_v AND row < char_v + char_size AND
@@ -126,17 +126,20 @@ begin
     --     (row >= char_v AND row < char_v + char_size AND
     --      col >= char_h + 2 * char_size AND col < char_h + 3 * char_size);
 
-    bound_red <= (row >= 320 AND row <= 720 AND col >=  64 AND col <= 288) OR
-                 (row >= 320 AND row <= 720 AND col >= 624 AND col <= 848);
-    bound_gre <= (row >= 320 AND row <= 720 AND col >= 176 AND col <= 512) OR
-                 (row >= 320 AND row <= 720 AND col >= 736 AND col <= 848);
-    bound_blu <= (row >= 320 AND row <= 720 AND col >= 400 AND col <= 848);
+    -- bound_red <= (row >= 320 AND row <= 720 AND col >=  64 AND col <= 288) OR
+    --              (row >= 320 AND row <= 720 AND col >= 624 AND col <= 848);
+    -- bound_gre <= (row >= 320 AND row <= 720 AND col >= 176 AND col <= 512) OR
+    --              (row >= 320 AND row <= 720 AND col >= 736 AND col <= 848);
+    -- bound_blu <= (row >= 320 AND row <= 720 AND col >= 400 AND col <= 848);
 
     w <= '1' WHEN (bound_border) ELSE
          '1' WHEN (char_lum = '1') ELSE '0';
 
-    red <= '1' WHEN (w = '1' OR bound_red) ELSE '0';
-    gre <= '1' WHEN (w = '1' OR bound_gre) ELSE '0';
-    blu <= '1' WHEN (w = '1' OR bound_blu) ELSE '0';
+    -- red <= '1' WHEN (w = '1' OR bound_red) ELSE '0';
+    -- gre <= '1' WHEN (w = '1' OR bound_gre) ELSE '0';
+    -- blu <= '1' WHEN (w = '1' OR bound_blu) ELSE '0';
+    red <= w;
+    gre <= w;
+    blu <= w;
 
 end;
