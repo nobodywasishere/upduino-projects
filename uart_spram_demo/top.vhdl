@@ -47,7 +47,8 @@ entity top is
         led_b : out std_logic;
         serial_txd : out std_logic;
         serial_rxd : in std_logic;
-        spi_cs : out std_logic
+        spi_cs : out std_logic;
+        seven_seg : out unsigned(8 downto 0)
     );
 end top;
 
@@ -122,6 +123,14 @@ architecture synth of top is
         );
     end component;
 
+    component segment is
+        port (
+            clk : in std_logic;
+            data : in unsigned(7 downto 0);
+            display : out unsigned(8 downto 0)
+        );
+    end component;
+
     signal clk_1, clk_4, clk_48 : std_logic;
     signal reset : std_logic;
 
@@ -140,7 +149,8 @@ architecture synth of top is
 
     signal fifo_read_strobe : std_logic;
     signal fifo_available : std_logic;
-    signal fifo_data : unsigned(7 downto 0);
+    signal fifo_data_in : unsigned(7 downto 0);
+    signal fifo_data_out : unsigned(7 downto 0);
 
 begin
 
@@ -166,7 +176,7 @@ begin
         baud_x1 => clk_1,
         serial => serial_txd_interm,
         ready => uart_txd_ready,
-        data => fifo_data,
+        data => fifo_data_out,
         data_strobe => uart_txd_strobe
     );
 
@@ -175,7 +185,7 @@ begin
         reset => reset,
         baud_x4 => clk_4,
         serial => serial_rxd,
-        data => uart_rxd,
+        data => fifo_data_in,
         data_strobe => uart_rxd_strobe
     );
 
@@ -183,14 +193,20 @@ begin
         clk => clk_48,
         reset => reset,
         data_available => fifo_available,
-        write_data => uart_rxd,
+        write_data => fifo_data_in,
         write_strobe => uart_rxd_strobe,
-        read_data => fifo_data,
+        read_data => fifo_data_out,
         read_strobe => fifo_read_strobe
     );
 
+    seg1 : segment port map (
+        clk => clk_48,
+        data => fifo_data_in,
+        display => seven_seg
+    );
+
     spi_cs <= '1';
-    led_b <= serial_txd_interm;
+    led_b <= '1';
     serial_txd <= serial_txd_interm;
 
     process (clk_48) begin

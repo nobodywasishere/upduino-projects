@@ -15,4 +15,6 @@ Files:
  - Makefile: compile and flash, see `make help` for usage info
  - uart.vhdl: UART tools and utilities.
 
+![](./seven_seg.jpg)
+
 ![](./top.svg)
