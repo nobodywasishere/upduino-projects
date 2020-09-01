@@ -17,4 +17,18 @@ Files:
 
 ![](./seven_seg.jpg)
 
-![](./top.svg)
+top:
+
+![](./svg/top.svg)
+
+fifo_spram:
+
+![](./svg/fifo_spram.svg)
+
+uart_rx:
+
+![](./svg/uart_rx.svg)
+
+uart_tx:
+
+![](./svg/uart_tx.svg)

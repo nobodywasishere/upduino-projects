@@ -9,8 +9,10 @@ REDBOLD=\e[1;31m
 BLUEBOLD=\e[1;36m
 NC=\033[0m
 
+ENTITY=top segment fifo_spram uart_tx uart_rx
+
 .PHONY:
-	all clean simulate synth route generate flash all_err stats error warning
+	all clean simulate synth route generate flash all_err stats error warning svg
 
 all:
 	@$(MAKE) clean $(MAKE_OPT)
@@ -23,7 +25,7 @@ all:
 
 clean:
 	@echo -en "$(BLUEBOLD)==== Cleaning...     ====$(NC)\n"
-	rm -rf *.bin *.asc *.json *.cf $(LOG_FILE) && touch $(LOG_FILE)
+	rm -rf *.bin *.asc *.json *.cf svg $(LOG_FILE) && touch $(LOG_FILE)
 
 simulate:
 	@echo -en "$(BLUEBOLD)==== Simulating...   ====$(NC)\n"
@@ -80,6 +82,9 @@ svg:
 	@$(MAKE) clean $(MAKE_OPT)
 	@$(MAKE) simulate $(MAKE_OPT) || $(MAKE) all_err $(MAKE_OPT)
 	@echo -en "$(BLUEBOLD)==== Drawing...      ====$(NC)\n"
-	yosys -p "ghdl $(PRIMARY); prep -top $(PRIMARY); write_json svg.json" $(ERR_STREAM)
-	sed -i 's/"top": "00000000000000000000000000000001"/"top": 1/g' svg.json $(ERR_STREAM)
-	netlistsvg svg.json -o $(PRIMARY).svg $(ERR_STREAM)
+	mkdir svg
+	for entity in $(ENTITY); do \
+		yosys -p "ghdl $$entity; prep -top $$entity; write_json svg.json" $(ERR_STREAM); \
+		sed -i 's/"top": "00000000000000000000000000000001"/"top": 1/g' svg.json $(ERR_STREAM); \
+		netlistsvg svg.json -o svg/$$entity.svg $(ERR_STREAM); \
+	done

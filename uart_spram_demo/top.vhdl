@@ -176,7 +176,7 @@ begin
         baud_x1 => clk_1,
         serial => serial_txd_interm,
         ready => uart_txd_ready,
-        data => fifo_data_out,
+        data => fifo_data_in,
         data_strobe => uart_txd_strobe
     );
 
