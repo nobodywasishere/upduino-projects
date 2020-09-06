@@ -65,23 +65,35 @@ begin
     -- V_B <= 33;
     -- V_T <= V_A + V_F + V_S + V_B;
 
-    -- 65 MHz / 768p
-    H_A <= 1024;
-    H_F <= 24;
-    H_S <= 136;
+    -- 49.5 MHz / 800x600
+    H_A <= 800;
+    H_F <= 16;
+    H_S <= 80;
     H_B <= 160;
     H_T <= H_A + H_F + H_S + H_B;
-    V_A <= 768;
-    V_F <= 3;
-    V_S <= 6;
-    V_B <= 29;
+    V_A <= 600;
+    V_F <= 1;
+    V_S <= 3;
+    V_B <= 21;
     V_T <= V_A + V_F + V_S + V_B;
+
+    -- -- 65 MHz / 1024x768
+    -- H_A <= 1024;
+    -- H_F <= 24;
+    -- H_S <= 136;
+    -- H_B <= 160;
+    -- H_T <= H_A + H_F + H_S + H_B;
+    -- V_A <= 768;
+    -- V_F <= 3;
+    -- V_S <= 6;
+    -- V_B <= 29;
+    -- V_T <= V_A + V_F + V_S + V_B;
 
     -- 74.25 MHz / 720p Doesn't work
     -- H_A <= 1280;
-    -- H_F <= 220;
+    -- H_F <= 110;
     -- H_S <= 40;
-    -- H_B <= 110;
+    -- H_B <= 220;
     -- H_T <= H_A + H_F + H_S + H_B;
     -- V_A <= 720;
     -- V_F <= 5;
@@ -99,6 +111,30 @@ begin
     -- V_F <= 1;
     -- V_S <= 3;
     -- V_B <= 23;
+    -- V_T <= V_A + V_F + V_S + V_B;
+
+    -- 148.5 MHz / 1080p Doesn't work
+    -- H_A <= 1920;
+    -- H_F <= 88;
+    -- H_S <= 44;
+    -- H_B <= 148;
+    -- H_T <= H_A + H_F + H_S + H_B;
+    -- V_A <= 1080;
+    -- V_F <= 4;
+    -- V_S <= 5;
+    -- V_B <= 36;
+    -- V_T <= V_A + V_F + V_S + V_B;
+
+    -- 1280x1024
+    -- H_A <= 1280;
+    -- H_F <= 88;--1368-1280;
+    -- H_S <= 128;
+    -- H_B <= 216;
+    -- H_T <= H_A + H_F + H_S + H_B;
+    -- V_A <= 1024;
+    -- V_F <= 3;
+    -- V_S <= 7;
+    -- V_B <= 11;
     -- V_T <= V_A + V_F + V_S + V_B;
 
     -- hsync <= '0' WHEN (hori >= (H_A + H_F) and hori <= (H_A + H_F + H_S)) ELSE '1';
@@ -159,32 +195,81 @@ architecture synth of pll is
             -- Uncomment one of these to choose a resolution
             -- Make sure the VGA has the matching clk speed
 
-            -- 25.125 MHz / 480p
+            -- 48 MHz > 25.125 MHz / 480p
             -- FEEDBACK_PATH : String := "SIMPLE";
             -- DIVR : unsigned(3 downto 0) := "0011";
             -- DIVF : unsigned(6 downto 0) := "1000010";
             -- DIVQ : unsigned(2 downto 0) := "101";
             -- FILTER_RANGE : unsigned(2 downto 0) := "001"
 
-            -- 65 MHz / 768p
-            FEEDBACK_PATH : String := "SIMPLE";
-            DIVR : unsigned(3 downto 0) := "0010";
-            DIVF : unsigned(6 downto 0) := "1000000";
-            DIVQ : unsigned(2 downto 0) := "100";
-            FILTER_RANGE : unsigned(2 downto 0) := "001"
+            -- 48 MHz > 65 MHz / 1024x768
+            -- FEEDBACK_PATH : String := "SIMPLE";
+            -- DIVR : unsigned(3 downto 0) := "0010";
+            -- DIVF : unsigned(6 downto 0) := "1000000";
+            -- DIVQ : unsigned(2 downto 0) := "100";
+            -- FILTER_RANGE : unsigned(2 downto 0) := "001"
 
-            -- 74 MHz / 720p Doesn't work
+            -- 48 MHz > 74 MHz / 720p Doesn't work
             -- FEEDBACK_PATH : String := "SIMPLE";
             -- DIVR : unsigned(3 downto 0) := "0010";
             -- DIVF : unsigned(6 downto 0) := "0100100";
             -- DIVQ : unsigned(2 downto 0) := "011";
             -- FILTER_RANGE : unsigned(2 downto 0) := "001"
 
-            -- 86 MHz / 1368x768 Doesn't work
+            -- 48 MHz > 86 MHz / 1368x768 Doesn't work
             -- FEEDBACK_PATH : String := "SIMPLE";
             -- DIVR : unsigned(3 downto 0) := "0010";
             -- DIVF : unsigned(6 downto 0) := "0101010";
             -- DIVQ : unsigned(2 downto 0) := "011";
+            -- FILTER_RANGE : unsigned(2 downto 0) := "001"
+
+            -- 36 MHz > 65.25 MHz / 1024x768
+            -- FEEDBACK_PATH : String := "SIMPLE";
+            -- DIVR : unsigned(3 downto 0) := "0000";
+            -- DIVF : unsigned(6 downto 0) := "0011100";
+            -- DIVQ : unsigned(2 downto 0) := "100";
+            -- FILTER_RANGE : unsigned(2 downto 0) := "011"
+
+            -- 36 MHz > 74.25 MHz / 720p
+            -- FEEDBACK_PATH : String := "SIMPLE";
+            -- DIVR : unsigned(3 downto 0) := "0001";
+            -- DIVF : unsigned(6 downto 0) := "0100000";
+            -- DIVQ : unsigned(2 downto 0) := "011";
+            -- FILTER_RANGE : unsigned(2 downto 0) := "010"
+
+            -- 36 MHz > 148.5 MHz / 1080p
+            -- FEEDBACK_PATH : String := "SIMPLE";
+            -- DIVR : unsigned(3 downto 0) := "0001";
+            -- DIVF : unsigned(6 downto 0) := "0100000";
+            -- DIVQ : unsigned(2 downto 0) := "010";
+            -- FILTER_RANGE : unsigned(2 downto 0) := "010"
+
+            -- 36 > 109 MHz / 1280x1024 / Black screen doesn't work
+            -- FEEDBACK_PATH : String := "SIMPLE";
+            -- DIVR : unsigned(3 downto 0) := "0010";
+            -- DIVF : unsigned(6 downto 0) := "1001000";
+            -- DIVQ : unsigned(2 downto 0) := "011";
+            -- FILTER_RANGE : unsigned(2 downto 0) := "001"
+
+            -- 12 MHz > 25.125 MHz / 640x480
+            -- FEEDBACK_PATH : String := "SIMPLE";
+            -- DIVR : unsigned(3 downto 0) := "0000";
+            -- DIVF : unsigned(6 downto 0) := "1000010";
+            -- DIVQ : unsigned(2 downto 0) := "101";
+            -- FILTER_RANGE : unsigned(2 downto 0) := "001"
+
+            -- 12 MHz > 49.5 MHz / 800x600
+            FEEDBACK_PATH : String := "SIMPLE";
+            DIVR : unsigned(3 downto 0) := "0000";
+            DIVF : unsigned(6 downto 0) := "1000001";
+            DIVQ : unsigned(2 downto 0) := "100";
+            FILTER_RANGE : unsigned(2 downto 0) := "001"
+
+            -- -- 12 MHz > 65 MHz / 1024x768
+            -- FEEDBACK_PATH : String := "SIMPLE";
+            -- DIVR : unsigned(3 downto 0) := "0000";
+            -- DIVF : unsigned(6 downto 0) := "1010110";
+            -- DIVQ : unsigned(2 downto 0) := "100";
             -- FILTER_RANGE : unsigned(2 downto 0) := "001"
 
         );
