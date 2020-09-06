@@ -10,6 +10,7 @@ Requires a working Icestorm toolchain setup (http://www.clifford.at/icestorm/), 
 |--------------------|-------------------------------------------------------------|
 | Documentation      | Various documentation files about the FPGA and others       |
 | flashing_led       | Flashes the onboard LED with 8 colors                       |
+| hamming_*          | Hamming code implementations                                |
 | template           | A blank template for creating new projects                  |
 | uart/uart_*        | UART over USB                                               |
 | tetris_anim        | An animation of a game of Tetris                            |

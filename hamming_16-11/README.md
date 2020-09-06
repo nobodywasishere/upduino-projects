@@ -1,20 +1,20 @@
 ## hamming
 
-A simple hamming(15,11) implementation
+A simple hamming(16,11) implementation
 
 ![](./hamming.jpg)
 
 Was tested by connecting hamming_set, hamming_detect, and hamming_correct together, setting an input, and making sure it matched the output. No further testing has been done yet.
 
-- hamming_set - Takes in 4 bits of data and gives a proper hamming code.
+- hamming_set - Takes in 8 bits of data and gives a proper 16-bit hamming code.
 
 ![](./svg/hamming_set.svg)
 
-- hamming_detect - Takes in a hamming code and gives back either the error location (if there's one error) or if there was a double error (in which it will set error location to zero).
+- hamming_detect - Takes in a 16-bit hamming code and gives back either the error location (if there's one error) or if there was a double error (in which it will set error location to zero).
 
 ![](./svg/hamming_detect.svg)
 
-- hamming_correct - Takes in a hamming code and error location and corrects it, giving back the original 4 bits of data.
+- hamming_correct - Takes in a 16-bit hamming code and error location and corrects it, giving back the original 8 bits of data.
 
 ![](./svg/hamming_correct.svg)
 
