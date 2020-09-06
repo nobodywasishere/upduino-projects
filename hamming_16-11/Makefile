@@ -8,7 +8,7 @@ ENTITY=top hamming_set hamming_detect hamming_correct
 
 REDBOLD=\e[1;31m
 BLUEBOLD=\e[1;36m
-NC=\033[0m
+NC='\033[0m'
 
 .PHONY:
 	all clean simulate synth route generate flash all_err stats error warning

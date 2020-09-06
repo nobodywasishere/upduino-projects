@@ -7,7 +7,7 @@ MAKE_OPT=--no-print-directory
 
 REDBOLD=\e[1;31m
 BLUEBOLD=\e[1;36m
-NC=\033[0m
+NC='\033[0m'
 
 ENTITY=top segment fifo_spram uart_tx uart_rx
 
