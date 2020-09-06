@@ -4,7 +4,7 @@ VHDL_EXT=vhdl
 LOG_FILE=build.log
 ERR_STREAM=>> $(LOG_FILE) 2>> $(LOG_FILE)
 MAKE_OPT=--no-print-directory
-ENTITY=top hamming_set hamming_detect
+ENTITY=top hamming_set hamming_detect hamming_correct
 
 REDBOLD=\e[1;31m
 BLUEBOLD=\e[1;36m
