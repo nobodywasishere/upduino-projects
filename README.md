@@ -14,7 +14,6 @@ Requires a working Icestorm toolchain setup (http://www.clifford.at/icestorm/), 
 | template           | A blank template for creating new projects                  |
 | uart/uart_*        | UART over USB                                               |
 | tetris_anim        | An animation of a game of Tetris                            |
-| vga_logic_analyzer | (Proof of concept) Logic analyzer output to VGA display     |
 | vga_text           | ASCII + text buffer output to VGA display                   |
 | vga                | Simple 8-color 480p/768p VGA output module                  |
 
