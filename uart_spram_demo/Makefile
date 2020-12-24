@@ -9,7 +9,8 @@ REDBOLD=\e[1;31m
 BLUEBOLD=\e[1;36m
 NC='\033[0m'
 
-ENTITY=top segment fifo_spram uart_tx uart_rx
+ENTITY=top segment fifo uart_tx uart_rx
+
 
 .PHONY:
 	all clean simulate synth route generate flash all_err stats error warning svg
@@ -17,7 +18,7 @@ ENTITY=top segment fifo_spram uart_tx uart_rx
 all:
 	@$(MAKE) clean $(MAKE_OPT)
 	@$(MAKE) simulate $(MAKE_OPT) || $(MAKE) all_err $(MAKE_OPT)
-	@$(MAKE) synth $(MAKE_OPT)
+	@$(MAKE) synth $(MAKE_OPT) || $(MAKE) all_err $(MAKE_OPT)
 	@$(MAKE) route $(MAKE_OPT) || $(MAKE) all_err $(MAKE_OPT)
 	@$(MAKE) generate $(MAKE_OPT)
 	@$(MAKE) flash $(MAKE_OPT) && echo -en "$(BLUEBOLD)==== Done            ====$(NC)\n"

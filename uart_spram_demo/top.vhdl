@@ -96,18 +96,14 @@ architecture synth of top is
         );
     end component;
 
-    component fifo_spram is
-        generic (
-            BIT_WIDTH : integer := 8;
-            BIT_NUM : integer := 15
-        );
+    component fifo is
         port(
             clk : in std_logic;
             reset : in std_logic;
             data_available : out std_logic;
-            write_data : in unsigned(BIT_WIDTH - 1 downto 0);
+            write_data : in unsigned(7 downto 0);
             write_strobe : in std_logic;
-            read_data : out unsigned(BIT_WIDTH - 1 downto 0);
+            read_data : out unsigned(7 downto 0);
             read_strobe : in std_logic
         );
     end component;
@@ -189,7 +185,7 @@ begin
         data_strobe => uart_rxd_strobe
     );
 
-    dut7 : fifo_spram port map (
+    dut7 : fifo port map (
         clk => clk_48,
         reset => reset,
         data_available => fifo_available,

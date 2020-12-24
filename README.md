@@ -28,3 +28,5 @@ Requires a working Icestorm toolchain setup (http://www.clifford.at/icestorm/), 
 - [Project IceStorm](http://www.clifford.at/icestorm/)
 - [ghdl-yosys-plugin](https://github.com/ghdl/ghdl-yosys-plugin)
 - [GHDL](https://github.com/ghdl/ghdl)
+
+Make sure to run `export GHDL_PREFIX=/lib/ghdl` when using the open-tool-forge fpga toolchain.

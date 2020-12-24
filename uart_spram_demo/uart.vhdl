@@ -397,33 +397,71 @@ use IEEE.numeric_std.all;
 use ieee.math_real.all;
 
 entity fifo is
-    generic (
-        data_width : integer := 8;
-        data_num : integer := 32
-    );
     port (
         clk : in std_logic;
         reset : in std_logic;
         data_available : out std_logic;
-        write_data : in unsigned(data_width - 1 downto 0);
+        write_data : in unsigned(7 downto 0);
         write_strobe : in std_logic;
-        read_data : out unsigned(data_width - 1 downto 0);
+        read_data : out unsigned(7 downto 0);
         read_strobe : in std_logic
     );
 end fifo;
 
 architecture synth of fifo is
 
-    type mem_buffer is array (0 to data_num - 1) of unsigned(data_width - 1 downto 0);
+    function CLOG2 (
+        x : in integer
+    )   return integer is
+        variable y : integer;
+    begin
+        if (x <= 2) then
+            y := 1;
+        elsif (x <= 4) then
+            y := 2;
+        elsif (x <= 8) then
+            y := 3;
+        elsif (x <= 16) then
+            y := 4;
+        elsif (x <= 32) then
+            y := 5;
+        elsif (x <= 64) then
+            y := 6;
+        elsif (x <= 128) then
+            y := 7;
+        elsif (x <= 256) then
+            y := 8;
+        elsif (x <= 512) then
+            y := 9;
+        elsif (x <= 1024) then
+            y := 10;
+        elsif (x <= 2048) then
+            y := 11;
+        elsif (x <= 4096) then
+            y := 12;
+        elsif (x <= 8192) then
+            y := 13;
+        elsif (x <= 16384) then
+            y := 14;
+        elsif (x <= 32768) then
+            y := 15;
+        elsif (x <= 65536) then
+            y := 16;
+        else
+            y := -1;
+        end if;
+        return y;
+    end function;
+
+    type mem_buffer is array (0 to 7) of unsigned(7 downto 0);
     signal buffer_one : mem_buffer;
 
-    signal size_log2 : integer := integer(ceil(log2(real(data_width))));
-    signal write_ptr : unsigned( size_log2 - 1 downto 0 ) := "00";
-    signal read_ptr : unsigned( size_log2 - 1 downto 0 ) := "00";
+    signal write_ptr : unsigned(4 downto 0) := "00000";
+    signal read_ptr : unsigned(4 downto 0) := "00000";
 
 begin
-    read_data <= buffer_one(to_integer(read_ptr));
 
+    read_data <= buffer_one(to_integer(read_ptr));
 
     process (clk) begin
         if (rising_edge(clk)) then
@@ -434,8 +472,8 @@ begin
             end if;
 
             if (reset = '1') then
-                write_ptr <= "00";
-                read_ptr <= "00";
+                write_ptr <= "00000";
+                read_ptr <= "00000";
             else
                 if (write_strobe = '1') then
                     buffer_one(to_integer(write_ptr)) <= write_data;

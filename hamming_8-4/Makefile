@@ -82,9 +82,9 @@ svg:
 	@$(MAKE) simulate $(MAKE_OPT) || $(MAKE) all_err $(MAKE_OPT)
 	@echo -en "$(BLUEBOLD)==== Drawing...      ====$(NC)\n"
 	mkdir svg
-	for entity in $(ENTITY); do \
-		yosys -p "ghdl $$entity; prep -top $$entity; write_json -compat-int svg.json" $(ERR_STREAM); \
-		sed -i 's/"top": "00000000000000000000000000000001"/"top": 1/g' svg.json $(ERR_STREAM); \
-		sed -i 's/"z"/"x"/g' svg.json $(ERR_STREAM); \
-		netlistsvg svg.json -o svg/$$entity.svg $(ERR_STREAM); \
+	for en in $(ENTITY); do \
+		yosys -p "ghdl $$en; prep -top $$en; write_json -compat-int svg.json"; \
+		sed -i 's/"top": "[0]{31}1"/"top": 1/g' svg.json; \
+		sed -i 's/"z"/"x"/g' svg.json; \
+		netlistsvg svg.json -o svg/$$en.svg; \
 	done

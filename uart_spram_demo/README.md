@@ -1,4 +1,4 @@
-## uart_echo
+## uart_spram_demo
 
 This was a translation of Verilog code from [osresearch/up5k](https://github.com/osresearch/up5k) into VHDL for the Upduino v2. This program takes any information received on the tx/rx pins and sends it back, aka an echo. The on board LED flashes blue when receiving and red when sending. There is a steady flashing green light to show activity.
 
