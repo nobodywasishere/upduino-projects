@@ -1,0 +1,99 @@
+#!/usr/bin/env python
+
+# Written with Python 3.9
+
+from PIL import Image, ImageDraw, ImageFont
+import os, sys
+import argparse
+
+text_begin = """
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+
+
+entity text_font is
+	port(
+        clk : in std_logic;
+        char : in unsigned(7 downto 0);
+        row : in unsigned(2 downto 0);
+        col : in unsigned(2 downto 0);
+        lum : out std_logic
+	);
+end text_font;
+
+architecture synth of text_font is
+
+    signal addr : unsigned(10 downto 0) := (others => '0');
+    signal mem : unsigned(7 downto 0);
+
+begin
+
+    addr <= char & row;
+    lum <= mem(to_integer(col));
+
+    process (clk) begin
+        if (rising_edge(clk)) then
+            case addr is
+"""
+
+text_end = """
+                when        others => mem <= "00000000";
+            end case;
+        end if;
+    end process;
+
+end;
+"""
+
+parser = argparse.ArgumentParser(description='Convert a BMH file to a VHDL font')
+parser.add_argument('-v', action='store_true', help="Verbose output")
+parser.add_argument('-i', help='Input file', required=True)
+parser.add_argument('-o', help='Output file', default='text_font.vhdl')
+
+args = parser.parse_args()
+
+bit_string = "const char bitmap_"
+
+ifile = open(args.i, 'r')
+ofile = open(args.o, 'w+')
+
+text = ifile.read()[:-1].split('\n')
+
+otext = []
+
+dict = {}
+
+if args.v:
+    print(text_begin)
+ofile.write(text_begin)
+
+for id in range(len(text[:])):
+    if "//" in text[id]:
+        text[id] = text[id].split("//")[0].replace(' ', '')
+    if bit_string in text[id]:
+        thing = text[id].replace(bit_string, '').replace("[]", "")
+        otext.append(thing)
+        char = int(thing.split(" = ")[0])
+        font = [int(x) for x in thing.split(" = ")[1].replace("{","").replace("}","").replace(";","").split(",")]
+
+        if args.v:
+            print("\t\t-- "+ chr(char))
+        ofile.write("\n\t\t\t\t-- "+ chr(char))
+
+        for i in range(len(font)):
+            str1 = []
+            for j in range(len(font)):
+                str1.append((font[j] >> i)%2)
+
+            if args.v:
+                print("\t\twhen "+ f"{char:08b}" + f"{i:03b}" + " => mem <= "+ str(str1[::-1]).strip("[]").replace(', ', ""))
+            ofile.write("\n\t\t\t\twhen "+ f"{char:08b}" + f"{i:03b}" + " => mem <= "+ str(str1[::-1]).strip("[]").replace(', ', ""))
+
+        if args.v:
+            print()
+        ofile.write("\n")
+
+if args.v:
+    print(text_end)
+ofile.write(text_end)

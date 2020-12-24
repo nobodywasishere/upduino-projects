@@ -6,6 +6,10 @@ An ASCII character set with C64 font and text buffer that outputs to a 768p VGA 
 
 ![](./top.svg)
 
+Use `tex2rom` to turn a text file into text_rom.vhdl for displaying text on the screen.
+
+Use [TTF2BMH](https://github.com/nobodywasishere/TTF2BMH) to convert a TTF font to a BMH (square and height 8), then use `bmh2fontrom` to convert a BMH into text_font.vhdl. Current font is DejaVu Sans Mono.
+
 ```
 Info: Device utilisation:
 Info: 	         ICESTORM_LC:   936/ 5280    17%
