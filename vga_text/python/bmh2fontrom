@@ -87,8 +87,8 @@ for id in range(len(text[:])):
                 str1.append((font[j] >> i)%2)
 
             if args.v:
-                print("\t\twhen "+ f"{char:08b}" + f"{i:03b}" + " => mem <= "+ str(str1[::-1]).strip("[]").replace(', ', ""))
-            ofile.write("\n\t\t\t\twhen "+ f"{char:08b}" + f"{i:03b}" + " => mem <= "+ str(str1[::-1]).strip("[]").replace(', ', ""))
+                print("\t\twhen \""+ f"{char:08b}" + f"{i:03b}\"" + " => mem <= \""+ str(str1[::-1]).strip("[]").replace(', ', "") + "\";")
+            ofile.write("\n\t\t\t\twhen \""+ f"{char:08b}" + f"{i:03b}\"" + " => mem <= \""+ str(str1[::-1]).strip("[]").replace(', ', "") + "\";")
 
         if args.v:
             print()
