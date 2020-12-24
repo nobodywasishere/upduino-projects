@@ -24,7 +24,7 @@ architecture synth of top is
         );
     end component;
 
-    component ascii is
+    component text_font is
     	port(
             clk : in std_logic;
             char : in unsigned(7 downto 0);
@@ -34,7 +34,7 @@ architecture synth of top is
     	);
     end component;
 
-    component text_buffer is
+    component text_rom is
     	port(
             clk : in std_logic;
             row : in unsigned(5 downto 0);
@@ -73,14 +73,14 @@ begin
         rout => rout, gout => gout, bout => bout,
         hsync => hsync, vsync => vsync
     );
-    ascii1 : ascii port map (
+    text_font1 : text_font port map (
         clk => clk_pxl,
         char => char,
         row => char_row,
         col => char_col,
         lum => char_lum
     );
-    buffer1 : text_buffer port map (
+    buffer1 : text_rom port map (
         clk => clk_pxl,
         char => char,
         row => txt_row,

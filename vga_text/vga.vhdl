@@ -46,10 +46,6 @@ begin
 
     clk_pxl <= clk_pxl_local;
 
-    rout <= rin;
-    gout <= gin;
-    bout <= bin;
-
     -- Uncomment one of these to choose a resolution
     -- Make sure the PLL has the matching clk speed
 
@@ -170,6 +166,12 @@ begin
             row <= to_unsigned(vert,11);
             col <= to_unsigned(hori,11);
         end if;
+
+		if (falling_edge(clk_pxl_local)) then
+			rout <= rin;
+			gout <= gin;
+			bout <= bin;
+		end if;
     end process;
 end;
 

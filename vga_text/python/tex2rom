@@ -1,0 +1,87 @@
+#!/usr/bin/env python
+
+# Written with Python 3.9
+
+import os, sys
+import argparse
+
+supported = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ']
+
+text_begin = """
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+
+
+entity text_rom is
+	port(
+        clk : in std_logic;
+        row : in unsigned(5 downto 0);
+        col : in unsigned(5 downto 0);
+        char : out unsigned(7 downto 0)
+	);
+end text_rom;
+
+architecture synth of text_rom is
+
+    signal addr : unsigned (11 downto 0) := (others => '0');
+
+begin
+
+    addr <= row & col;
+
+    process (clk) begin
+        if (rising_edge(clk)) then
+            case addr is
+"""
+
+text_end = """
+                when         others => char <= "00000000";
+            end case;
+        end if;
+    end process;
+
+end;
+"""
+
+parser = argparse.ArgumentParser(description='Convert text file to VHDL ASCII rom')
+parser.add_argument('-v', action='store_true', help="Verbose output")
+parser.add_argument('-i', help='Input file', required=True)
+parser.add_argument('-o', help='Output file', default='text_font.vhdl')
+parser.add_argument('-U', help='Force input uppercase', action='store_true')
+
+args = parser.parse_args()
+
+ifile = open(args.i, 'r')
+ofile = open(args.o, 'w+')
+
+if args.U:
+    text = ifile.read()[:-1].upper()
+else:
+    text = ifile.read()[:-1]
+
+ofile.write(text_begin)
+if args.v:
+    print(text_begin)
+
+char_pos = 0
+for char in text[:]:
+    if (char == "\n"):
+        char_pos = char_pos & 0xFE0
+        char_pos += 0x020
+        ofile.write("\n")
+    else:
+        char_pos += 1
+        if char not in supported:
+            print("Warning, the character " + char + " is not supported")
+
+        rom_line = "                when " + f"\"{char_pos:012b}\" => char <= " + f"\"{ord(char):08b}\";" + "\t-- " + char
+
+        ofile.write(rom_line + "\n")
+
+        if args.v:
+            print(rom_line)
+
+ofile.write(text_end)
+if args.v:
+    print(text_end)

@@ -3,7 +3,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 
-entity ascii is
+entity text_font is
 	port(
         clk : in std_logic;
         char : in unsigned(7 downto 0);
@@ -11,9 +11,9 @@ entity ascii is
         col : in unsigned(2 downto 0);
         lum : out std_logic
 	);
-end ascii;
+end text_font;
 
-architecture synth of ascii is
+architecture synth of text_font is
 
     signal addr : unsigned(10 downto 0) := (others => '0');
     signal mem : unsigned(7 downto 0);
