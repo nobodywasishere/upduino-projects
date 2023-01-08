@@ -51,9 +51,9 @@ architecture synth of top is
     signal bound_red, bound_gre, bound_blu : boolean;
     signal w : std_logic;
 
-    constant screen_h : integer := 800;
-    constant screen_v : integer := 600;
-    constant border_size : integer := 8;
+    constant screen_h : integer := 640;
+    constant screen_v : integer := 480;
+    constant border_size : integer := 16;
 
     signal char : unsigned(7 downto 0);
     signal char_row : unsigned(2 downto 0);

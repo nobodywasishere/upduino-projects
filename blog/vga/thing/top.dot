@@ -1,0 +1,61 @@
+digraph m100 {
+  p0 [label="\a"];
+  p0 -> i14 [label="n1"];
+  p0 -> i6 [label="n1"];
+
+  p1 [label="\b"];
+  p1 -> i14 [label="n2"];
+  p1 -> i9 [label="n2"];
+
+  p2 [label="\s"];
+  p2 -> i16 [label="n3"];
+  p2 -> i12 [label="n3"];
+  p2 -> i8 [label="n3"];
+  p2 -> i5 [label="n3"];
+
+  i4 [label="$const_UB32"];
+  i4 -> i5 [label="n5"];
+
+  i5 [label="$eq"];
+  i5 -> i6 [label="n6"];
+
+  i6 [label="$mux2"];
+  i6 -> i2 [label="n7"];
+
+  i7 [label="$const_UB32"];
+  i7 -> i8 [label="n8"];
+
+  i8 [label="$eq"];
+  i8 -> i9 [label="n9"];
+
+  i9 [label="$mux2"];
+  i9 -> i6 [label="n10"];
+
+  i10 [label="$const_UB32"];
+  i10 -> i13 [label="n11"];
+
+  i11 [label="$const_UB32"];
+  i11 -> i12 [label="n12"];
+
+  i12 [label="$eq"];
+  i12 -> i13 [label="n13"];
+
+  i13 [label="$mux2"];
+  i13 -> i9 [label="n14"];
+
+  i14 [label="$add"];
+  i14 -> i17 [label="n15"];
+
+  i15 [label="$const_UB32"];
+  i15 -> i16 [label="n16"];
+
+  i16 [label="$eq"];
+  i16 -> i17 [label="n17"];
+
+  i17 [label="$mux2"];
+  i17 -> i13 [label="n18"];
+
+  i18 [label="$const_UB32"];
+  i18 -> i17 [label="n19"];
+
+}

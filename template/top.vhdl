@@ -11,6 +11,8 @@ end top;
 
 architecture synth of top is
 
+	signal S : unsigned(3 downto 0) := (others => '0');
+
 begin
 	SIG <= '1';
 end;

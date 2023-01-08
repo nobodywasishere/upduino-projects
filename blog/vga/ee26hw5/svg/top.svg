@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:s="https://github.com/nturley/netlistsvg" width="582" height="249">
+  <style>svg {
+    stroke:#000;
+    fill:none;
+  }
+  text {
+    fill:#000;
+    stroke:none;
+    font-size:10px;
+    font-weight: bold;
+    font-family: "Courier New", monospace;
+  }
+  line {
+      stroke-linecap: round;
+  }
+  .nodelabel {
+    text-anchor: middle;
+  }
+  .inputPortLabel {
+    text-anchor: end;
+  }
+  .splitjoinBody {
+    fill:#000;
+  }</style>
+  <g s:type="add" transform="translate(155,27)" s:width="25" s:height="25" id="cell_\4">
+    <s:alias val="$add"/>
+    <circle r="12.5" cx="12.5" cy="12.5" class="cell_\4"/>
+    <line x1="7.5" x2="17.5" y1="12.5" y2="12.5" class="cell_\4"/>
+    <line x1="12.5" x2="12.5" y1="7.5" y2="17.5" class="cell_\4"/>
+    <g s:x="2" s:y="5" s:pid="A"/>
+    <g s:x="2" s:y="20" s:pid="B"/>
+    <g s:x="26" s:y="12.5" s:pid="Y"/>
+  </g>
+  <g s:type="generic" transform="translate(153,151.5)" s:width="30" s:height="40" id="cell_\7">
+    <text x="15" y="-4" class="nodelabel cell_\7" s:attribute="ref">$mul</text>
+    <rect width="30" height="40" s:generic="body" class="cell_\7"/>
+    <g transform="translate(0,10)" s:x="0" s:y="10" s:pid="in0" id="port_\7~A">
+      <text x="-3" y="-4" class="inputPortLabel cell_\7">A</text>
+    </g>
+    <g transform="translate(0,30)" s:x="0" s:y="10" s:pid="in0" id="port_\7~B">
+      <text x="-3" y="-4" class="inputPortLabel cell_\7">B</text>
+    </g>
+    <g transform="translate(30,10)" s:x="30" s:y="10" s:pid="out0" id="port_\7~Y">
+      <text x="5" y="-4" style="fill:#000; stroke:none" class="cell_\7">Y</text>
+    </g>
+  </g>
+  <g s:type="generic" transform="translate(332,29)" s:width="30" s:height="40" id="cell_dut">
+    <text x="15" y="-4" class="nodelabel cell_dut" s:attribute="ref">normalize_fp</text>
+    <rect width="30" height="40" s:generic="body" class="cell_dut"/>
+    <g transform="translate(0,10)" s:x="0" s:y="10" s:pid="in0" id="port_dut~in_exponent">
+      <text x="-3" y="-4" class="inputPortLabel cell_dut">in_exponent</text>
+    </g>
+    <g transform="translate(0,30)" s:x="0" s:y="10" s:pid="in0" id="port_dut~in_mantissa">
+      <text x="-3" y="-4" class="inputPortLabel cell_dut">in_mantissa</text>
+    </g>
+    <g transform="translate(30,10)" s:x="30" s:y="10" s:pid="out0" id="port_dut~out_exponent">
+      <text x="5" y="-4" style="fill:#000; stroke:none" class="cell_dut">out_exponent</text>
+    </g>
+    <g transform="translate(30,30)" s:x="30" s:y="10" s:pid="out0" id="port_dut~out_mantissa">
+      <text x="5" y="-4" style="fill:#000; stroke:none" class="cell_dut">out_mantissa</text>
+    </g>
+  </g>
+  <g s:type="inputExt" transform="translate(12,22)" s:width="30" s:height="20" id="cell_A_exponent">
+    <text x="15" y="-4" class="nodelabel cell_A_exponent" s:attribute="ref">A_exponent</text>
+    <s:alias val="$_inputExt_"/>
+    <path d="M0,0 L0,20 L15,20 L30,10 L15,0 Z" class="cell_A_exponent"/>
+    <g s:x="30" s:y="10" s:pid="Y"/>
+  </g>
+  <g s:type="inputExt" transform="translate(12,152)" s:width="30" s:height="20" id="cell_A_mantissa">
+    <text x="15" y="-4" class="nodelabel cell_A_mantissa" s:attribute="ref">A_mantissa</text>
+    <s:alias val="$_inputExt_"/>
+    <path d="M0,0 L0,20 L15,20 L30,10 L15,0 Z" class="cell_A_mantissa"/>
+    <g s:x="30" s:y="10" s:pid="Y"/>
+  </g>
+  <g s:type="inputExt" transform="translate(12,87)" s:width="30" s:height="20" id="cell_B_exponent">
+    <text x="15" y="-4" class="nodelabel cell_B_exponent" s:attribute="ref">B_exponent</text>
+    <s:alias val="$_inputExt_"/>
+    <path d="M0,0 L0,20 L15,20 L30,10 L15,0 Z" class="cell_B_exponent"/>
+    <g s:x="30" s:y="10" s:pid="Y"/>
+  </g>
+  <g s:type="inputExt" transform="translate(12,217)" s:width="30" s:height="20" id="cell_B_mantissa">
+    <text x="15" y="-4" class="nodelabel cell_B_mantissa" s:attribute="ref">B_mantissa</text>
+    <s:alias val="$_inputExt_"/>
+    <path d="M0,0 L0,20 L15,20 L30,10 L15,0 Z" class="cell_B_mantissa"/>
+    <g s:x="30" s:y="10" s:pid="Y"/>
+  </g>
+  <g s:type="outputExt" transform="translate(510,29.5)" s:width="30" s:height="20" id="cell_Y_exponent">
+    <text x="15" y="-4" class="nodelabel cell_Y_exponent" s:attribute="ref">Y_exponent</text>
+    <s:alias val="$_outputExt_"/>
+    <path d="M30,0 L30,20 L15,20 L0,10 L15,0 Z" class="cell_Y_exponent"/>
+    <g s:x="0" s:y="10" s:pid="A"/>
+  </g>
+  <g s:type="outputExt" transform="translate(510,94.5)" s:width="30" s:height="20" id="cell_Y_mantissa">
+    <text x="15" y="-4" class="nodelabel cell_Y_mantissa" s:attribute="ref">Y_mantissa</text>
+    <s:alias val="$_outputExt_"/>
+    <path d="M30,0 L30,20 L15,20 L0,10 L15,0 Z" class="cell_Y_mantissa"/>
+    <g s:x="0" s:y="10" s:pid="A"/>
+  </g>
+  <line x1="42" x2="157" y1="32" y2="32" class="net_2,3,4,5 width_4" style="stroke-width: 2"/>
+  <line x1="42" x2="121" y1="97" y2="97" class="net_10,11,12,13 width_4" style="stroke-width: 2"/>
+  <line x1="121" x2="121" y1="97" y2="47" class="net_10,11,12,13 width_4" style="stroke-width: 2"/>
+  <line x1="121" x2="157" y1="47" y2="47" class="net_10,11,12,13 width_4" style="stroke-width: 2"/>
+  <line x1="42" x2="153" y1="162" y2="162" class="net_6,7,8,9 width_4" style="stroke-width: 2"/>
+  <line x1="42" x2="121" y1="227" y2="227" class="net_14,15,16,17 width_4" style="stroke-width: 2"/>
+  <line x1="121" x2="121" y1="227" y2="182" class="net_14,15,16,17 width_4" style="stroke-width: 2"/>
+  <line x1="121" x2="153" y1="182" y2="182" class="net_14,15,16,17 width_4" style="stroke-width: 2"/>
+  <line x1="181" x2="332" y1="39.5" y2="39.5" class="net_30,31,32,33 width_4" style="stroke-width: 2"/>
+  <line x1="184" x2="240" y1="162" y2="162" class="net_34,35,36,37,38,39,40,41 width_8" style="stroke-width: 2"/>
+  <line x1="240" x2="240" y1="162" y2="59.5" class="net_34,35,36,37,38,39,40,41 width_8" style="stroke-width: 2"/>
+  <line x1="240" x2="332" y1="59.5" y2="59.5" class="net_34,35,36,37,38,39,40,41 width_8" style="stroke-width: 2"/>
+  <line x1="363" x2="510" y1="39.5" y2="39.5" class="net_18,19,20,21 width_4" style="stroke-width: 2"/>
+  <line x1="363" x2="446" y1="59.5" y2="59.5" class="net_22,23,24,25,26,27,28,29 width_8" style="stroke-width: 2"/>
+  <line x1="446" x2="446" y1="59.5" y2="104.5" class="net_22,23,24,25,26,27,28,29 width_8" style="stroke-width: 2"/>
+  <line x1="446" x2="510" y1="104.5" y2="104.5" class="net_22,23,24,25,26,27,28,29 width_8" style="stroke-width: 2"/>
+  <rect x="107" y="27" width="18" height="10" class="net_2,3,4,5 width_4" style="fill: white; stroke: none"/>
+  <text x="107" y="35" class="net_2,3,4,5 width_4">/4/</text>
+  <rect x="107" y="92" width="18" height="10" class="net_10,11,12,13 width_4" style="fill: white; stroke: none"/>
+  <text x="107" y="100" class="net_10,11,12,13 width_4">/4/</text>
+  <rect x="107" y="157" width="18" height="10" class="net_6,7,8,9 width_4" style="fill: white; stroke: none"/>
+  <text x="107" y="165" class="net_6,7,8,9 width_4">/4/</text>
+  <rect x="107" y="222" width="18" height="10" class="net_14,15,16,17 width_4" style="fill: white; stroke: none"/>
+  <text x="107" y="230" class="net_14,15,16,17 width_4">/4/</text>
+  <rect x="226" y="34.5" width="18" height="10" class="net_30,31,32,33 width_4" style="fill: white; stroke: none"/>
+  <text x="226" y="42.5" class="net_30,31,32,33 width_4">/4/</text>
+  <rect x="226" y="157" width="18" height="10" class="net_34,35,36,37,38,39,40,41 width_8" style="fill: white; stroke: none"/>
+  <text x="226" y="165" class="net_34,35,36,37,38,39,40,41 width_8">/8/</text>
+  <rect x="471" y="34.5" width="18" height="10" class="net_18,19,20,21 width_4" style="fill: white; stroke: none"/>
+  <text x="471" y="42.5" class="net_18,19,20,21 width_4">/4/</text>
+  <rect x="471" y="99.5" width="18" height="10" class="net_22,23,24,25,26,27,28,29 width_8" style="fill: white; stroke: none"/>
+  <text x="471" y="107.5" class="net_22,23,24,25,26,27,28,29 width_8">/8/</text>
+</svg>

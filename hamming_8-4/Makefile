@@ -20,7 +20,7 @@ all:
 	@$(MAKE) route $(MAKE_OPT) || $(MAKE) all_err $(MAKE_OPT)
 	@$(MAKE) generate $(MAKE_OPT)
 	@$(MAKE) flash $(MAKE_OPT) && echo -en "$(BLUEBOLD)==== Done            ====$(NC)\n"
-	-$(MAKE) svg $(MAKE_OPT)
+	#-$(MAKE) svg $(MAKE_OPT)
 
 clean:
 	@echo -en "$(BLUEBOLD)==== Cleaning...     ====$(NC)\n"
@@ -83,8 +83,7 @@ svg:
 	@echo -en "$(BLUEBOLD)==== Drawing...      ====$(NC)\n"
 	mkdir svg
 	for en in $(ENTITY); do \
-		yosys -p "ghdl $$en; prep -top $$en; write_json -compat-int svg.json"; \
-		sed -i 's/"top": "[0]{31}1"/"top": 1/g' svg.json; \
+		yosys -p "ghdl $$en; prep -top $$en; write_json -compat-int svg.json" $(ERR_STREAM); \
 		sed -i 's/"z"/"x"/g' svg.json; \
 		netlistsvg svg.json -o svg/$$en.svg; \
 	done

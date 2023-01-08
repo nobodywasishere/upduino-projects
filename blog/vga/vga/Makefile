@@ -86,7 +86,5 @@ svg:
 	mkdir svg
 	for entity in $(ENTITY); do \
 		yosys -p "ghdl $$entity; prep -top $$entity; write_json -compat-int svg.json" $(ERR_STREAM); \
-		sed -i 's/"top": "00000000000000000000000000000001"/"top": 1/g' svg.json $(ERR_STREAM); \
-		sed -i 's/"z"/"x"/g' svg.json $(ERR_STREAM); \
 		netlistsvg svg.json -o svg/$$entity.svg $(ERR_STREAM); \
 	done

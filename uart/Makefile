@@ -81,5 +81,4 @@ svg:
 	@$(MAKE) simulate $(MAKE_OPT) || $(MAKE) all_err $(MAKE_OPT)
 	@echo -en "$(BLUEBOLD)==== Drawing...      ====$(NC)\n"
 	yosys -p "ghdl $(PRIMARY); prep -top $(PRIMARY); write_json svg.json" $(ERR_STREAM)
-	sed -i 's/"top": "00000000000000000000000000000001"/"top": 1/g' svg.json $(ERR_STREAM)
 	netlistsvg svg.json -o $(PRIMARY).svg $(ERR_STREAM)

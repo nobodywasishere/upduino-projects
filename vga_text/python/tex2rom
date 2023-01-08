@@ -68,12 +68,12 @@ char_pos = 0
 for char in text[:]:
     if (char == "\n"):
         char_pos = char_pos & 0xFE0
-        char_pos += 0x020
+        char_pos += 0x040
         ofile.write("\n")
     else:
         char_pos += 1
-        if char not in supported:
-            print("Warning, the character " + char + " is not supported")
+        # if char not in supported:
+        #     print("Warning, the character " + char + " is not supported")
 
         rom_line = "                when " + f"\"{char_pos:012b}\" => char <= " + f"\"{ord(char):08b}\";" + "\t-- " + char
 

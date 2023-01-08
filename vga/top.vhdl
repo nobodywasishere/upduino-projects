@@ -64,11 +64,15 @@ begin
         (row >= screen_v - border_size OR row <= border_size OR
          col >= screen_h - border_size OR col <= border_size);
 
-    bound_red <= (row >= 48 AND row <= 720 AND col >=  64 AND col <= 288) OR
-                 (row >= 48 AND row <= 720 AND col >= 624 AND col <= 848);
-    bound_gre <= (row >= 48 AND row <= 720 AND col >= 176 AND col <= 512) OR
-                 (row >= 48 AND row <= 720 AND col >= 736 AND col <= 848);
-    bound_blu <= (row >= 48 AND row <= 720 AND col >= 400 AND col <= 848);
+    -- bound_red <= (row >= 48 AND row <= 720 AND col >=  64 AND col <= 288) OR
+    --              (row >= 48 AND row <= 720 AND col >= 624 AND col <= 848);
+    -- bound_gre <= (row >= 48 AND row <= 720 AND col >= 176 AND col <= 512) OR
+    --              (row >= 48 AND row <= 720 AND col >= 736 AND col <= 848);
+    -- bound_blu <= (row >= 48 AND row <= 720 AND col >= 400 AND col <= 848);
+
+	bound_red <= (row >= 0 AND row <= 200 AND col >= 0 AND col <= 200);
+	bound_gre <= false;
+	bound_blu <= false;
 
     red <= '1' WHEN (bound_border or (bound_red and bound_screen)) ELSE '0';
     gre <= '1' WHEN (bound_border or (bound_gre and bound_screen)) ELSE '0';

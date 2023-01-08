@@ -1,7 +1,7 @@
 # https://github.com/osresearch/up5k
 # The LED pins are using the current controlled outputs
 # and are negative logic (write a 0 to turn on).
-set_io -nowarn led_r	41
+set_io -pullup 1 -nowarn led_r	41
 set_io -nowarn led_g	39
 set_io -nowarn led_b	40
 

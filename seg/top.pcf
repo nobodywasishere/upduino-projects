@@ -1,0 +1,10 @@
+# https://github.com/osresearch/up5k
+# The LED pins are using the current controlled outputs
+# and are negative logic (write a 0 to turn on).
+set_io digits[6] 2
+set_io digits[5] 46
+set_io digits[4] 47
+set_io digits[3] 45
+set_io digits[2] 48
+set_io digits[1] 3
+set_io digits[0] 4
